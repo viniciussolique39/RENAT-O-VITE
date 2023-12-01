@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="patterns pt1" lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escola</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/imagem256.png">
+    <meta name="theme-color" content="red"/>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="/db.js"></script>
+  </head>
+  <body class="fullscreen">
+    <div class="container">
+        <h1 class="title">Cadastro de Escolas</h1>
+        <div class="underline">
+        </div>
+
+<form action="#" id="contact_form">
+<div id="entrada">
+<div class="inputs">
+            
+     
+<div class="nome">
+      <input required type="text" id="nomeEscola" placeholder="Digite o nome da Escola">
+</div>
+
+ 
+<div class="escola">    
+      <input required] type="text" id="endereco" placeholder="Digite o endereço da Escola">
+</div>
+                
+
+
+<button id="btnCadastro">Cadastrar</button>
+<button id="btnCarregar">Listar Escolas</button>
+</div> 
+
+<input type="text" id="inputBuscar" placeholder="Digite o nome da Escola">
+
+
+    
+<div class="latitude">
+<input required type="text" id="latitude" placeholder="Digite a latitude">
+</div>
+
+
+<div class="longitude">
+<input required type="text" id="longitude" placeholder="Digite a longitude">
+</div>
+
+<button id="btnBuscar">Buscar Escolas </button>
+
+<div id="map" style="height: 300px;"></div>
+</div>
+</form>
+<div style="margin-top: 85px;" id="resultados"></div>
+</div>
+    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwrgjVVdSPEeECOiB6FhhCwPPtrskXzFA"></script>
+    <style>
+      #map {
+        display: none;
+      }
+    </style>
+  </body>
+</html>
+        
+        
