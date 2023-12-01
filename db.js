@@ -96,7 +96,7 @@ async function listarEscola() {
         const divLista = escolas.map(escola => {
             return `<div class="item">
                     <p>Nome da Escola: ${escola.nomeEscola}</p>
-                    <p>País: ${escola.endereco}</p>
+                    <p>Escola: ${escola.endereco}</p>
                     <button class="btnMostrarMapa" data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
                     </div>`;
         });
