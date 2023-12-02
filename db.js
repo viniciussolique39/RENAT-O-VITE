@@ -83,10 +83,13 @@ function exibirNoMapa(latitude, longitude) {
     document.getElementById('map').style.display = 'block';
 }
 
+
 async function listarEscola() {
     if (db === undefined) {
         console.log("O banco de dados está fechado.");
     }
+
+
 
     const tx = await db.transaction('escola', 'readonly');
     const store = await tx.objectStore('escola');
@@ -116,34 +119,6 @@ function limparCampos() {
     document.getElementById("endereco").value = '';
     document.getElementById("longitude").value = '';
     document.getElementById("latitude").value = '';
-}
-
-async function buscarEscola() {
-    const nomeEscola = document.getElementById('inputBuscar').value;
-    if (!nomeEscola) {
-        console.log('Nome da escola não fornecido para busca.');
-        return;
-    }
-
-    const tx = await db.transaction('escola', 'readonly');
-    const store = tx.objectStore('escola');
-    const index = store.index('id');
-
-    try {
-        const nomeEscolaBusca = await index.get(nomeEscolaBusca);
-        if (nomeEscolaBusca) {
-            const divEscola = `<div class="item">
-                <p>Nome da Escola: ${nomeEscolaBusca.nomeEscola}</p>
-                <p>Endereço: ${nomeEscolaBusca.enderecoEscola}</p>
-            </div>`;
-            listagem(divEscola);
-        } else {
-            console.log(`Escola com o nome '${nomeEscolaBusca}' não encontrada.`);
-            listagem(''); 
-        }
-    } catch (error) {
-        console.error('Erro ao buscar Escola:', error);
-    }
 }
 
 function listagem(text) {
