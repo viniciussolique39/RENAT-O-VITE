@@ -100,7 +100,9 @@ async function listarEscola() {
             return `<div class="item">
                     <p>Nome da Escola: ${escola.nomeEscola}</p>
                     <p>Escola: ${escola.endereco}</p>
-                    <button class="btnMostrarMapa" data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
+                    <button class="btnMostrarMapa" 
+                    style="width: 100px; height: 30px; border-radius: 10px; margin-top: 10px; background: #002bff; color: #000000;"
+                    data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
                     </div>`;
         });
         listagem(divLista.join(' '));
