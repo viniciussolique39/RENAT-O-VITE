@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-
+// criando o db
 let db;
 
 async function criarDB() {
@@ -20,14 +20,16 @@ async function criarDB() {
         console.log('Erro ao criar/abrir banco: ' + e.message);
     }
 }
-
+//criando evento para colocar dados no db apos clicar no botao de cadastrar
+//e no botao de listar os dados aparecem no html
 window.addEventListener('DOMContentLoaded', async event => {
     criarDB();
     document.getElementById('btnCadastro').addEventListener('click', adicionarEscola);
     document.getElementById('btnCarregar').addEventListener('click', listarEscola);
 
 });
-
+//função adicionarEscola é a função que vai cadastrar as escolas ou seja, ela ira pegar os dados do formulario e ira colocar
+//todos eles no db
 async function adicionarEscola() {
     let nomeEscola = document.getElementById("nomeEscola").value;
     let endereco = document.getElementById("endereco").value;
@@ -63,6 +65,9 @@ async function adicionarEscola() {
 }
 
 
+
+
+//essa função exibir mapa ainda não está funcionando corretamente!
 function exibirNoMapa(latitude, longitude) {
     if (isNaN(latitude) || isNaN(longitude)) {
         console.error('Coordenadas inválidas.');
@@ -84,6 +89,8 @@ function exibirNoMapa(latitude, longitude) {
     });
     document.getElementById('map').style.display = 'block';
 }
+
+
 
 
 async function listarEscola() {
