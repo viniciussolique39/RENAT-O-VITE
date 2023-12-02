@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async event => {
     criarDB();
     document.getElementById('btnCadastro').addEventListener('click', adicionarEscola);
     document.getElementById('btnCarregar').addEventListener('click', listarEscola);
-    document.getElementById('btnBuscar').addEventListener('click', buscarEscola);
+
 });
 
 async function adicionarEscola() {
@@ -61,6 +61,8 @@ async function adicionarEscola() {
         tx.abort();
     }
 }
+
+
 function exibirNoMapa(latitude, longitude) {
     if (isNaN(latitude) || isNaN(longitude)) {
         console.error('Coordenadas inválidas.');
