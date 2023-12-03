@@ -79,11 +79,11 @@ const map = document.getElementById('mapa')
 
 
 const sucesso = () => {
-  let lat, lon;
-  lat =   document.getElementById('latitude').value;
-  lon =  document.getElementById('longitude').value;
+  let lat, longitude;
+  latitude =   document.getElementById('latitude').value;
+  longitude =  document.getElementById('longitude').value;
 
-  map.src = `http://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed`
+  map.src = `http://maps.google.com/maps?q=${latitude},${longitude}&z=16&output=embed`
 };
 
 const erro = (error) => {
