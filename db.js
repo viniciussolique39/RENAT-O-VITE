@@ -80,7 +80,7 @@ const map = document.getElementById('mapa')
 
 
 const sucesso = () => {
-  let lat, longitude;
+  let latitude, longitude;
   latitude =   document.getElementById('latitude').value;
   longitude =  document.getElementById('longitude').value;
 
@@ -126,10 +126,10 @@ async function listarEscola() {
         const divLista = escolas.map(escola => {
             return `<div class="item">
                     <p>Nome da Escola: ${escola.nomeEscola}</p>
-                    <p>Escola: ${escola.endereco}</p>
-                    <button class="btnMostrarMapa" 
-                    style="width: 100px; height: 30px; border-radius: 10px; margin-top: 10px; background: #002bff; color: #000000;"
-                    data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
+                    <p>endereço da escola: ${escola.endereco}</p>
+                    <p> latitude: ${escola.latitude}</p>
+                    <p> longitude: ${escola.longitude}</p>
+                    <hr>
                     </div>`;
         });
         listagem(divLista.join(' '));
