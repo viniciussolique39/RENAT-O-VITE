@@ -44,6 +44,7 @@ async function adicionarEscola() {
         console.log('Preencha os campos de latitude e longitude.');
         return;
     }
+    //Passando as informações no banco de dados, e adicionando no awit sotre.add
     const tx = await db.transaction('escola', 'readwrite');
     const store = tx.objectStore('escola');
     
@@ -73,7 +74,7 @@ function exibirNoMapa(latitude, longitude) {
         console.error('Coordenadas inválidas.');
         return;
     }
-
+//funcção de capturar a localização no mapa 
     const capturarLocalizacao = document.getElementById('localizacao');
 const map = document.getElementById('mapa')
 
@@ -104,7 +105,7 @@ const erro = (error) => {
     }
     console.log('Ocorreu um erro: ' + errorMessage);
   };
-  
+  //declaração da função capturarLocalização 
   capturarLocalizacao.addEventListener('click', () => {
     navigator.geolocation.getCurrentPosition(sucesso, erro);
   });
@@ -112,18 +113,15 @@ const erro = (error) => {
 
 
 
-
+//declarando a função de listar as escolas cadastradas no Banco de Dados INDEXDB
 async function listarEscola() {
     if (db === undefined) {
         console.log("O banco de dados está fechado.");
     }
-
-
-
     const tx = await db.transaction('escola', 'readonly');
     const store = await tx.objectStore('escola');
     const escolas = await store.getAll();
-
+ //Aqui criando uma lista dentro do db.js para mostrar no mapa
     if (escolas) {
         const divLista = escolas.map(escola => {
             return `<div class="item">
@@ -144,6 +142,8 @@ async function listarEscola() {
         });
       }
     }
+
+    //Função de limpar os Campos 
 
 function limparCampos() {
     document.getElementById("nomeEscola").value = '';
