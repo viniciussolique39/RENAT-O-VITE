@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-
+// criando o db
 let db;
 
 async function criarDB() {
@@ -20,14 +20,16 @@ async function criarDB() {
         console.log('Erro ao criar/abrir banco: ' + e.message);
     }
 }
-
+//criando evento para colocar dados no db apos clicar no botao de cadastrar
+//e no botao de listar os dados aparecem no html
 window.addEventListener('DOMContentLoaded', async event => {
     criarDB();
     document.getElementById('btnCadastro').addEventListener('click', adicionarEscola);
     document.getElementById('btnCarregar').addEventListener('click', listarEscola);
-    document.getElementById('btnBuscar').addEventListener('click', buscarEscola);
-});
 
+});
+//função adicionarEscola é a função que vai cadastrar as escolas ou seja, ela ira pegar os dados do formulario e ira colocar
+//todos eles no db
 async function adicionarEscola() {
     let nomeEscola = document.getElementById("nomeEscola").value;
     let endereco = document.getElementById("endereco").value;
@@ -61,27 +63,54 @@ async function adicionarEscola() {
         tx.abort();
     }
 }
+
+
+
+
+//essa função exibir mapa ainda não está funcionando corretamente!
 function exibirNoMapa(latitude, longitude) {
     if (isNaN(latitude) || isNaN(longitude)) {
         console.error('Coordenadas inválidas.');
         return;
     }
 
-    const myLatlng = new google.maps.LatLng(latitude, longitude);
-    const mapOptions = {
-        zoom: 10,
-        center: myLatlng,
-    };
+    const capturarLocalizacao = document.getElementById('localizacao');
+const map = document.getElementById('mapa')
 
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    const marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Local da Escola',
-    });
-    document.getElementById('map').style.display = 'block';
-}
+const sucesso = () => {
+  let lat, lon;
+  lat =   document.getElementById('latitude').value;
+  lon =  document.getElementById('longitude').value;
+
+  map.src = `http://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed`
+};
+
+const erro = (error) => {
+    let errorMessage;
+    switch(error.code){
+      case 0:
+        errorMessage = "Erro desconhecido"
+      break;
+      case 1:
+        errorMessage = "Permissão negada!"
+      break;
+      case 2:
+        errorMessage = "Captura de posição indisponível!"
+      break;
+      case 3:
+        errorMessage = "Tempo de solicitação excedido!"
+      break;
+    }
+    console.log('Ocorreu um erro: ' + errorMessage);
+  };
+  
+  capturarLocalizacao.addEventListener('click', () => {
+    navigator.geolocation.getCurrentPosition(sucesso, erro);
+  });
+}  
+
+
 
 
 async function listarEscola() {
@@ -100,7 +129,9 @@ async function listarEscola() {
             return `<div class="item">
                     <p>Nome da Escola: ${escola.nomeEscola}</p>
                     <p>Escola: ${escola.endereco}</p>
-                    <button class="btnMostrarMapa" data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
+                    <button class="btnMostrarMapa" 
+                    style="width: 100px; height: 30px; border-radius: 10px; margin-top: 10px; background: #002bff; color: #000000;"
+                    data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
                     </div>`;
         });
         listagem(divLista.join(' '));

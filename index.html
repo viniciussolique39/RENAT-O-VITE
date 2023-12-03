@@ -42,15 +42,21 @@
   </div>
   
 
-<button id="btnCadastro">Cadastrar</button>
-<button id="btnCarregar">Listar Escolas</button>
+<button id="btnCadastro" class="bot" type="button">Cadastrar</button>
+<button id="btnCarregar" class="glow-on-hover" type="button" >Listar Escolas</button>
 </div> 
-<div id="map" style="height: 300px;"></div>
+<div id="map" style="width: 400px; height: 400px; margin-left: 470px; margin-top: 50px;"></div>
 </div>
 </form>
-<div style="margin-top: 85px;" id="resultados"></div>
+<div style="margin-top: 85px; color: white;" id="resultados"></div>
 </div>
     
+
+<div class="mapouter"><div class="gmap_canvas"><iframe id="mapa" src="https://maps.google.com/maps?q=nova%20andradina%20brazil&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" style="width: 590px; height: 400px;"></iframe><style>.mapouter{position:relative;height:200px;width:290px;background:#fff;} .maprouter a{color:#fff !important;position:absolute !important;top:0 !important;z-index:0 !important;}</style><a href="https://blooketjoin.org">mapa</a><style>.gmap_canvas{overflow:hidden;height:300px;width:250px}.gmap_canvas iframe{position:relative;z-index:2}</style></div></div>
+<button class="botao" id="localizacao">Capturar localização</button>
+
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwrgjVVdSPEeECOiB6FhhCwPPtrskXzFA"></script>
     <style>
       #map {
