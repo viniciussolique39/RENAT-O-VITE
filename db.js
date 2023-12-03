@@ -74,21 +74,41 @@ function exibirNoMapa(latitude, longitude) {
         return;
     }
 
-    const myLatlng = new google.maps.LatLng(latitude, longitude);
-    const mapOptions = {
-        zoom: 10,
-        center: myLatlng,
-    };
+    const capturarLocalizacao = document.getElementById('localizacao');
+const map = document.getElementById('mapa')
 
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    const marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Local da Escola',
-    });
-    document.getElementById('map').style.display = 'block';
-}
+const sucesso = () => {
+  let lat, lon;
+  lat =   document.getElementById('latitude').value;
+  lon =  document.getElementById('longitude').value;
+
+  map.src = `http://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed`
+};
+
+const erro = (error) => {
+    let errorMessage;
+    switch(error.code){
+      case 0:
+        errorMessage = "Erro desconhecido"
+      break;
+      case 1:
+        errorMessage = "Permissão negada!"
+      break;
+      case 2:
+        errorMessage = "Captura de posição indisponível!"
+      break;
+      case 3:
+        errorMessage = "Tempo de solicitação excedido!"
+      break;
+    }
+    console.log('Ocorreu um erro: ' + errorMessage);
+  };
+  
+  capturarLocalizacao.addEventListener('click', () => {
+    navigator.geolocation.getCurrentPosition(sucesso, erro);
+  });
+}  
 
 
 
