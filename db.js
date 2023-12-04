@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', async event => {
     document.getElementById('btnCadastro').addEventListener('click', adicionarEscola);
     document.getElementById('btnCarregar').addEventListener('click', listarEscola);
 
-});
+    });
 //função adicionarEscola é a função que vai cadastrar as escolas ou seja, ela ira pegar os dados do formulario e ira colocar
 //todos eles no db
 async function adicionarEscola() {
@@ -50,7 +50,8 @@ async function adicionarEscola() {
     
     try {
         await store.add({
-            nomeEscola: nomeEscola,
+
+             nomeEscola: nomeEscola,
             endereco: endereco,
             latitude: latitude, 
             longitude: longitude 
@@ -78,13 +79,12 @@ function exibirNoMapa(latitude, longitude) {
     const capturarLocalizacao = document.getElementById('localizacao');
 const map = document.getElementById('mapa')
 
-
 const sucesso = () => {
-  let lat, lon;
-  lat =   document.getElementById('latitude').value;
-  lon =  document.getElementById('longitude').value;
+  let latitude, longitude;
+  latitude =   document.getElementById('latitude').value;
+  longitude =  document.getElementById('longitude').value;
 
-  map.src = `http://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed`
+  map.src = `http://maps.google.com/maps?q=${latitude},${longitude}&z=16&output=embed`
 };
 
 const erro = (error) => {
@@ -112,7 +112,6 @@ const erro = (error) => {
 }  
 
 
-
 //declarando a função de listar as escolas cadastradas no Banco de Dados INDEXDB
 async function listarEscola() {
     if (db === undefined) {
@@ -126,10 +125,10 @@ async function listarEscola() {
         const divLista = escolas.map(escola => {
             return `<div class="item">
                     <p>Nome da Escola: ${escola.nomeEscola}</p>
-                    <p>Escola: ${escola.endereco}</p>
-                    <button class="btnMostrarMapa" 
-                    style="width: 100px; height: 30px; border-radius: 10px; margin-top: 10px; background: #002bff; color: #000000;"
-                    data-latitude="${escola.latitude}" data-longitude="${escola.longitude}">Mostrar Mapa</button>
+                    <p>endereço da escola: ${escola.endereco}</p>
+                    <p> latitude: ${escola.latitude}</p>
+                    <p> longitude: ${escola.longitude}</p>
+                    <hr>
                     </div>`;
         });
         listagem(divLista.join(' '));
@@ -143,7 +142,7 @@ async function listarEscola() {
       }
     }
 
-    //Função de limpar os Campos 
+     //Função de limpar os Campos 
 
 function limparCampos() {
     document.getElementById("nomeEscola").value = '';
